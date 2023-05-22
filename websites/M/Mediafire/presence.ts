@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/nIZ0XtN.png",
 			startTimestamp: browsingTimestamp,
 		},
 		{ pathname, href, hostname } = document.location,
@@ -95,7 +95,7 @@ presence.on("UpdateData", async () => {
 				if (!search.textContent) {
 					presenceData.details = "Helpdesk searching for:";
 					presenceData.state = search.value;
-					presenceData.smallImageKey = "searching";
+					presenceData.smallImageKey = Assets.Search;
 				} else presenceData.details = "Checking out the helpdesk";
 			}
 			presenceData.buttons = [

@@ -7,7 +7,7 @@ presence.on("UpdateData", () => {
 	let video: HTMLVideoElement, live;
 	const path = window.location.pathname,
 		presenceData: PresenceData = {
-			largeImageKey: "roosterteeth",
+			largeImageKey: "https://i.imgur.com/Z2on4c9.png",
 			details: "Browsing Rooster Teeth",
 			startTimestamp: elapsed,
 		};
@@ -119,7 +119,7 @@ presence.on("UpdateData", () => {
 				? "Live Playback paused"
 				: "Live";
 		} else {
-			presenceData.smallImageKey = video.paused ? "pause" : "play";
+			presenceData.smallImageKey = video.paused ? Assets.Pause : Assets.Play;
 			presenceData.smallImageText = video.paused
 				? "Playback paused"
 				: "Playing back";

@@ -3,11 +3,12 @@ const presence = new Presence({
 	}),
 	browsingTimestamp = Math.floor(Date.now() / 1000);
 
-enum Assets {
-	Logo = "https://i.imgur.com/TWPjaYR.png",
-	Playing = "https://i.imgur.com/xiZprpt.png",
-	Paused = "https://i.imgur.com/w1jwJTh.png",
-	Replay = "https://i.imgur.com/UxmT8G2.png",
+const enum Assets {
+	Logo = "https://i.imgur.com/ogoDV1c.png",
+	Replay = "https://cdn.rcd.gg/PreMiD/resources/play.png",
+}
+
+enum OtherAssets {
 	"360DegreeEasy" = "https://i.imgur.com/DVJ8DrX.png",
 	"360DegreeExpert" = "https://i.imgur.com/TfqWdfp.png",
 	"360DegreeExpertPlus" = "https://i.imgur.com/NA06k7F.png",
@@ -33,11 +34,11 @@ enum Assets {
 	LawlessExpertPlus = "https://i.imgur.com/6Vkd5bU.png",
 	LawlessHard = "https://i.imgur.com/ndA08Dj.png",
 	LawlessNormal = "https://i.imgur.com/rMaDUFX.png",
-	LightShowEasy = "https://i.imgur.com/xc1Topa.png",
-	LightShowExpert = "https://i.imgur.com/cJKkojn.png",
-	LightShowExpertPlus = "https://i.imgur.com/rF4tn28.png",
-	LightShowHard = "https://i.imgur.com/awviQ8Y.png",
-	LightShowNormal = "https://i.imgur.com/J5qLp9b.png",
+	LightshowEasy = "https://i.imgur.com/xc1Topa.png",
+	LightshowExpert = "https://i.imgur.com/cJKkojn.png",
+	LightshowExpertPlus = "https://i.imgur.com/rF4tn28.png",
+	LightshowHard = "https://i.imgur.com/awviQ8Y.png",
+	LightshowNormal = "https://i.imgur.com/J5qLp9b.png",
 	NoArrowsEasy = "https://i.imgur.com/7fM9HNb.png",
 	NoArrowsExpert = "https://i.imgur.com/aLfl2ix.png",
 	NoArrowsExpertPlus = "https://i.imgur.com/WR2pnWY.png",
@@ -223,10 +224,12 @@ presence.on("UpdateData", async () => {
 						?.textContent
 				}`;
 				presenceData.smallImageKey =
-					Assets[
+					OtherAssets[
 						`${previewURL.searchParams.get(
 							"charName"
-						)}${previewURL.searchParams.get("diffName")}` as keyof typeof Assets
+						)}${previewURL.searchParams.get(
+							"diffName"
+						)}` as keyof typeof OtherAssets
 					];
 				if (cover && document.querySelector<HTMLImageElement>("img.dummy")) {
 					presenceData.largeImageKey =
@@ -282,6 +285,13 @@ presence.on("UpdateData", async () => {
 				];
 				break;
 			}
+			case "settings": {
+				presenceData.details = "Viewing settings";
+				presenceData.state = document.querySelector(
+					".navigation-item.selected"
+				).textContent;
+				break;
+			}
 			case "dashboard": {
 				presenceData.details = "Viewing dashboard";
 				break;
@@ -314,6 +324,10 @@ presence.on("UpdateData", async () => {
 				presenceData.details = "Searching users";
 				break;
 			}
+			case "followed": {
+				presenceData.details = "Viewing their follows";
+				break;
+			}
 		}
 		if (
 			(document
@@ -344,9 +358,7 @@ presence.on("UpdateData", async () => {
 				(preview.difficulty === preview.customDifficulty
 					? `${preview.gameMode} ${preview.difficulty}`
 					: `${preview.customDifficulty}`);
-			presenceData.smallImageKey = preview.playing
-				? Assets.Playing
-				: Assets.Paused;
+			presenceData.smallImageKey = preview.playing ? Assets.Play : Assets.Pause;
 			presenceData.smallImageText = preview.playing ? "Playing" : "Paused";
 			if (preview.playing) {
 				const timestamps = presence.getTimestamps(
@@ -369,8 +381,8 @@ presence.on("UpdateData", async () => {
 		presenceData.details = document.querySelector("#songName").textContent;
 		presenceData.state = document.querySelector("#playerName").textContent;
 		presenceData.smallImageKey = document.querySelector("div.btn.play")
-			? Assets.Paused
-			: Assets.Playing;
+			? Assets.Pause
+			: Assets.Play;
 		presenceData.smallImageText = document.querySelector("div.btn.play")
 			? "Paused"
 			: "Playing";
@@ -400,8 +412,8 @@ presence.on("UpdateData", async () => {
 			document.querySelectorAll(".playerTableRow")?.length
 		} player royale`;
 		presenceData.smallImageKey = document.querySelector("div.btn.play")
-			? Assets.Paused
-			: Assets.Playing;
+			? Assets.Pause
+			: Assets.Play;
 		presenceData.smallImageText = document.querySelector("div.btn.play")
 			? "Paused"
 			: "Playing";
@@ -428,34 +440,6 @@ presence.on("UpdateData", async () => {
 		delete presenceData.endTimestamp;
 	}
 	if (!buttons && presenceData.buttons) delete presenceData.buttons;
-
-	let presenceText = "\n";
-	if (presenceData.details) presenceText += `${presenceData.details}\n`;
-	if (presenceData.state) presenceText += `${presenceData.state}\n`;
-	if (presenceData.smallImageText)
-		presenceText += `${presenceData.smallImageText}\n`;
-	if (presenceData.smallImageKey)
-		presenceText += `${presenceData.smallImageKey}\n`;
-	if (presenceData.largeImageKey)
-		presenceText += `${presenceData.largeImageKey}\n`;
-	let previewURL;
-	if (
-		document.querySelector<HTMLAnchorElement>(
-			'a[href^="https://skystudioapps.com"]'
-		)?.href
-	) {
-		previewURL = new URL(
-			document.querySelector<HTMLAnchorElement>(
-				'a[href^="https://skystudioapps.com"]'
-			)?.href
-		);
-	}
-	if (previewURL) {
-		presenceText += `${previewURL.searchParams.get(
-			"charName"
-		)}${previewURL.searchParams.get("diffName")}`;
-	}
-	presence.info(presenceText);
 
 	if (presenceData.details) presence.setActivity(presenceData);
 	else presence.setActivity();

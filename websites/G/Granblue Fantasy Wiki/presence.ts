@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "vyrnball",
+		largeImageKey: "https://i.imgur.com/k5QiAPC.png",
 		startTimestamp: browsingTimestamp,
 	};
 
@@ -32,7 +32,7 @@ presence.on("UpdateData", () => {
 		presenceData.state = (
 			document.querySelector("input[type=search]") as HTMLInputElement
 		).value;
-		presenceData.smallImageKey = "search";
+		presenceData.smallImageKey = Assets.Search;
 		presenceData.smallImageText = "Searching";
 	} else if (document.location.href.includes("Special:Preferences"))
 		presenceData.details = "Editing preferences";
@@ -51,7 +51,7 @@ presence.on("UpdateData", () => {
 	} else if (document.querySelector(".firstHeading")) {
 		presenceData.details = "Viewing page:";
 		presenceData.state = document.querySelector(".firstHeading").textContent;
-		presenceData.smallImageKey = "reading";
+		presenceData.smallImageKey = Assets.Reading;
 		presenceData.smallImageText = "Reading";
 	}
 

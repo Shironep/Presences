@@ -25,7 +25,7 @@ presence.on("iFrameData", (data: DataInterface) => {
 });
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/oew3JqR.png",
 		},
 		pathArray: string[] = window.location.pathname
 			.replace(/^\/|\/$/g, "")
@@ -105,7 +105,7 @@ presence.on("UpdateData", async () => {
 			if (videoTitle) {
 				presenceData.details = "Watching a video";
 				presenceData.state = videoTitle;
-				presenceData.smallImageKey = videoPaused ? "pause" : "play";
+				presenceData.smallImageKey = videoPaused ? Assets.Pause : Assets.Play;
 				presenceData.smallImageText = videoPaused
 					? (await strings).pause
 					: (await strings).play;

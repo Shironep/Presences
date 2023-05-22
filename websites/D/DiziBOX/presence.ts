@@ -59,7 +59,7 @@ presence.on("UpdateData", async () => {
 			);
 
 			presence.setActivity({
-				largeImageKey: "db-logo",
+				largeImageKey: "https://i.imgur.com/OAkypjp.png",
 				details: "Bir diziye göz atıyor:",
 				state:
 					showName && showName.textContent !== ""
@@ -69,7 +69,7 @@ presence.on("UpdateData", async () => {
 			});
 		} else if (document.location.search.includes("?s=")) {
 			presence.setActivity({
-				largeImageKey: "db-logo",
+				largeImageKey: "https://i.imgur.com/OAkypjp.png",
 				details: "Bir dizi arıyor:",
 				state:
 					document.querySelector(
@@ -91,14 +91,14 @@ presence.on("UpdateData", async () => {
 			);
 
 			presence.setActivity({
-				largeImageKey: "db-logo",
+				largeImageKey: "https://i.imgur.com/OAkypjp.png",
 				details: "Bir üyenin profiline bakıyor:",
 				state: user && user.textContent ? user.textContent : "Belirsiz",
 				startTimestamp: Math.floor(Date.now() / 1000),
 			});
 		} else if (pages[page] || pages[page.slice(0, -1)]) {
 			presence.setActivity({
-				largeImageKey: "db-logo",
+				largeImageKey: "https://i.imgur.com/OAkypjp.png",
 				details: "Bir sayfaya göz atıyor:",
 				state: pages[page] || pages[page.slice(0, -1)],
 				startTimestamp: Math.floor(Date.now() / 1000),
@@ -116,11 +116,11 @@ presence.on("UpdateData", async () => {
 				Math.floor(_video.duration)
 			),
 			presenceData: PresenceData = {
-				largeImageKey: "db-logo",
+				largeImageKey: "https://i.imgur.com/OAkypjp.png",
 				details: title && title.textContent ? title.textContent : "Belirsiz",
 				state:
 					episode && episode.textContent ? episode.textContent : "Belirsiz",
-				smallImageKey: _video.paused ? "pause" : "play",
+				smallImageKey: _video.paused ? Assets.Pause : Assets.Play,
 				smallImageText: _video.paused
 					? (await strings).pause
 					: (await strings).play,
@@ -147,11 +147,11 @@ presence.on("UpdateData", async () => {
 				Math.floor(video.duration)
 			),
 			presenceData: PresenceData = {
-				largeImageKey: "db-logo",
+				largeImageKey: "https://i.imgur.com/OAkypjp.png",
 				details: title && title.textContent ? title.textContent : "Belirsiz",
 				state:
 					episode && episode.textContent ? episode.textContent : "Belirsiz",
-				smallImageKey: video.paused ? "pause" : "play",
+				smallImageKey: video.paused ? Assets.Pause : Assets.Play,
 				smallImageText: video.paused
 					? (await strings).pause
 					: (await strings).play,

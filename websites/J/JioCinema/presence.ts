@@ -9,7 +9,7 @@ const presence: Presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "large_img",
+			largeImageKey: "https://i.imgur.com/vP9Hh5d.png",
 			startTimestamp,
 		},
 		url = window.location.href;
@@ -17,8 +17,8 @@ presence.on("UpdateData", async () => {
 		const [video] = document.querySelectorAll("video");
 		presenceData.details =
 			document.querySelectorAll(".meta-data-title")[0].textContent;
-		presenceData.largeImageKey = "large_img";
-		presenceData.smallImageKey = video.paused ? "pause" : "play";
+		presenceData.largeImageKey = "https://i.imgur.com/vP9Hh5d.png";
+		presenceData.smallImageKey = video.paused ? Assets.Pause : Assets.Play;
 		presenceData.smallImageText = video.paused
 			? (await strings).pause
 			: (await strings).play;
@@ -43,7 +43,7 @@ presence.on("UpdateData", async () => {
 		}
 	} else if (url.includes("/search/")) {
 		presenceData.details = "Searching...";
-		presenceData.smallImageKey = "search";
+		presenceData.smallImageKey = Assets.Search;
 	} else presenceData.details = "Browsing";
 
 	presence.setActivity(presenceData, true);

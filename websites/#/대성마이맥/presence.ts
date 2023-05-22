@@ -9,7 +9,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "logo",
+		largeImageKey: "https://i.imgur.com/hsnSDNo.png",
 	};
 
 	if (document.location.pathname.includes("/common/aquaplayer/")) {
@@ -25,11 +25,11 @@ presence.on("UpdateData", async () => {
 				video.currentTime,
 				video.duration
 			);
-			presenceData.smallImageKey = "play";
+			presenceData.smallImageKey = Assets.Play;
 			presenceData.smallImageText = (await strings).play;
 		} else {
 			delete presenceData.endTimestamp;
-			presenceData.smallImageKey = "pause";
+			presenceData.smallImageKey = Assets.Pause;
 			presenceData.smallImageText = (await strings).pause;
 		}
 	} else {

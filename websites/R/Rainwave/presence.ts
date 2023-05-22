@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "rainwv",
+		largeImageKey: "https://i.imgur.com/XJb9wAx.png",
 	};
 	if (document.location.pathname.startsWith("/pages/playback_history"))
 		presenceData.details = "Looking at playback history...";
@@ -17,7 +17,7 @@ presence.on("UpdateData", async () => {
 		!document.querySelector("div#r4_audio_player.unselectable.playing")
 	) {
 		presenceData.details = "Not listening.";
-		presenceData.smallImageKey = "pause";
+		presenceData.smallImageKey = Assets.Pause;
 	} else {
 		presenceData.details = `${
 			document.querySelector<HTMLDivElement>(

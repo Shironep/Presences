@@ -59,7 +59,7 @@ presence.on(
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "javx",
+			largeImageKey: "https://i.imgur.com/0Jwz0Ct.png",
 			startTimestamp: Math.floor(Date.now() / 1000),
 		},
 		{ pathname, search } = location,
@@ -146,7 +146,7 @@ presence.on("UpdateData", async () => {
 				Math.floor(video.currentTime),
 				Math.floor(video.duration)
 			);
-			presenceData.smallImageKey = video.paused ? "pause" : "play";
+			presenceData.smallImageKey = video.paused ? Assets.Pause : Assets.Play;
 			presenceData.smallImageText = video.paused
 				? (await strings).paused
 				: (await strings).playing;

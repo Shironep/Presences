@@ -2,9 +2,10 @@ const presence = new Presence({
 		clientId: "973710731549745152",
 	}),
 	browsingTimestamp = Math.floor(Date.now() / 1000);
+
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "drw",
+			largeImageKey: "https://i.imgur.com/LzdNPBJ.png",
 			startTimestamp: browsingTimestamp,
 		},
 		{ pathname, search } = window.location;
@@ -45,7 +46,7 @@ presence.on("UpdateData", async () => {
 			break;
 		}
 		case pathname === "/search": {
-			presenceData.smallImageKey = "searching";
+			presenceData.smallImageKey = Assets.Search;
 			presenceData.smallImageText = "Searching...";
 			if (search) {
 				presenceData.details = "Searching for:";

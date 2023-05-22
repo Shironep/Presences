@@ -7,7 +7,7 @@ let title: HTMLElement;
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "rl",
+		largeImageKey: "https://i.imgur.com/mW47NQQ.png",
 	};
 
 	title = document.querySelector("#offer-balance");
@@ -37,7 +37,7 @@ presence.on("UpdateData", async () => {
 			);
 			presenceData.details = "Reading article:";
 			presenceData.state = title.textContent;
-			presenceData.smallImageKey = "reading";
+			presenceData.smallImageKey = Assets.Reading;
 		} else {
 			presenceData.details = "Browsing through";
 			presenceData.state = "latest news";

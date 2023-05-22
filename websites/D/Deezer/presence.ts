@@ -10,7 +10,7 @@ let oldLang: string = null,
 
 presence.on("UpdateData", async () => {
 	let presenceData: PresenceData = {
-			largeImageKey: "deezer",
+			largeImageKey: "https://i.imgur.com/GKMQi3h.png",
 		},
 		strings = await getStrings(),
 		paused = false;
@@ -111,7 +111,7 @@ presence.on("UpdateData", async () => {
 			}
 
 			presenceData.largeImageKey = cover ? albumCoverURL : "deezer";
-			presenceData.smallImageKey = paused ? "pause" : "play";
+			presenceData.smallImageKey = paused ? Assets.Pause : Assets.Play;
 			presenceData.smallImageText = paused ? strings.pause : strings.play;
 			[presenceData.startTimestamp, presenceData.endTimestamp] = timestamps;
 
@@ -158,7 +158,7 @@ presence.on("UpdateData", async () => {
 			}
 
 			presenceData.largeImageKey = cover ? podcastCoverURL : "deezer";
-			presenceData.smallImageKey = paused ? "pause" : "play";
+			presenceData.smallImageKey = paused ? Assets.Pause : Assets.Play;
 			presenceData.smallImageText = paused ? strings.pause : strings.play;
 			[presenceData.startTimestamp, presenceData.endTimestamp] = timestamps;
 

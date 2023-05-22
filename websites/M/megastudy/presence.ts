@@ -28,7 +28,7 @@ presence.on(
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "logo",
+		largeImageKey: "https://i.imgur.com/hC6q0vV.png",
 	};
 
 	if (document.location.pathname.includes("Player")) {
@@ -50,11 +50,11 @@ presence.on("UpdateData", async () => {
 				video.currentTime,
 				video.duration
 			);
-			presenceData.smallImageKey = "play";
+			presenceData.smallImageKey = Assets.Play;
 			presenceData.smallImageText = (await strings).play;
 		} else {
 			delete presenceData.endTimestamp;
-			presenceData.smallImageKey = "pause";
+			presenceData.smallImageKey = Assets.Pause;
 			presenceData.smallImageText = (await strings).pause;
 		}
 	} else {

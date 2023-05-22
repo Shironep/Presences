@@ -2,12 +2,13 @@ const presence = new Presence({
 		clientId: "923893773048619008",
 	}),
 	browsingTimestamp = Math.floor(Date.now() / 1000);
+
 let cacheMangaURL: string, cacheMangaChapter: string;
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
 			details: "Browsing",
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/W3vFfFi.png",
 			startTimestamp: browsingTimestamp,
 		},
 		{ pathname } = document.location,

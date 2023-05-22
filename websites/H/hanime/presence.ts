@@ -31,7 +31,7 @@ presence.on(
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "logo",
+		largeImageKey: "https://i.imgur.com/LXjbZoN.png",
 	};
 	if (document.location.pathname.includes("/videos")) {
 		if (playback === true && !isNaN(duration)) {
@@ -43,7 +43,7 @@ presence.on("UpdateData", async () => {
 			presenceData.state = document.querySelector(
 				"div.hvpi-main.flex.column > div > div > div:nth-child(1) > a"
 			).textContent;
-			presenceData.smallImageKey = paused ? "pause" : "play";
+			presenceData.smallImageKey = paused ? Assets.Pause : Assets.Play;
 			presenceData.smallImageText = paused
 				? (await strings).pause
 				: (await strings).play;

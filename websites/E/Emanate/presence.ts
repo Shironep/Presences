@@ -43,7 +43,7 @@ const emanate = new Emanate({
 
 emanate.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/yFQLKFU.png",
 			startTimestamp: emanate.startTime,
 		},
 		pages = {
@@ -97,7 +97,7 @@ emanate.on("UpdateData", async () => {
 				songData.duration
 			);
 
-			presenceData.smallImageKey = songData.paused ? "pause" : "play";
+			presenceData.smallImageKey = songData.paused ? Assets.Pause : Assets.Play;
 			presenceData.smallImageText = songData.paused ? "Paused" : "Playing";
 
 			presenceData.buttons = [

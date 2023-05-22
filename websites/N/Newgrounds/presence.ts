@@ -23,7 +23,7 @@ let lastGameChange: number = null,
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "ng",
+			largeImageKey: "https://i.imgur.com/OfHFd5Q.jpeg",
 		},
 		itemName = document.querySelector('[itemprop="name"]')
 			? document.querySelector('[itemprop="name"]').textContent
@@ -304,7 +304,7 @@ presence.on("UpdateData", async () => {
 		presenceData.details = `Searching for ${
 			document.querySelector(".current").textContent
 		}`;
-		presenceData.smallImageKey = "search";
+		presenceData.smallImageKey = Assets.Search;
 		presenceData.smallImageText = "Searching";
 		if (await presence.getSetting<boolean>("showsearchterm")) {
 			const query = new URLSearchParams(document.location.search).get("terms");

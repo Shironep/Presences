@@ -8,7 +8,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "streamable",
+			largeImageKey: "https://i.imgur.com/D38h5SR.png",
 		},
 		player = document.querySelector<HTMLVideoElement>(".video-player-tag");
 
@@ -23,7 +23,7 @@ presence.on("UpdateData", async () => {
 			document.querySelector(".metadata #title").textContent;
 		presenceData.state =
 			document.querySelector(".metadata #visits").textContent;
-		presenceData.smallImageKey = player.paused ? "pause" : "play";
+		presenceData.smallImageKey = player.paused ? Assets.Pause : Assets.Play;
 		presenceData.smallImageText = player.paused
 			? (await strings).pause
 			: (await strings).play;

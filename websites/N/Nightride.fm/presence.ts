@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/HnZw53P.png",
 		},
 		songName = `${document.querySelector("#npArtist").textContent} ${
 			document.querySelector("#npTitle").textContent
@@ -14,12 +14,12 @@ presence.on("UpdateData", async () => {
 	let state;
 	if (document.querySelector("body").className.includes("playing")) {
 		state = "Playing";
-		presenceData.smallImageKey = "play";
+		presenceData.smallImageKey = Assets.Play;
 		presenceData.smallImageText = "Playing";
 		presenceData.startTimestamp = browsingTimestamp;
 	} else {
 		state = "Paused";
-		presenceData.smallImageKey = "pause";
+		presenceData.smallImageKey = Assets.Pause;
 		presenceData.smallImageText = "Paused";
 		presenceData.endTimestamp;
 	}

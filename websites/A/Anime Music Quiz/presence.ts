@@ -12,7 +12,7 @@ let lobbyNumber,
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "amq",
+		largeImageKey: "https://i.imgur.com/oaRshoy.png",
 	};
 	if (!navigator.language.includes("it-IT")) {
 		// English
@@ -120,7 +120,7 @@ presence.on("UpdateData", async () => {
 			presenceData.state = "police";
 			presence.setActivity(presenceData);
 		} else {
-			presenceData.smallImageKey = "search";
+			presenceData.smallImageKey = Assets.Search;
 			presenceData.smallImageText = "Browsing...";
 			presenceData.details = "Browsing...";
 			presence.setActivity(presenceData);
@@ -226,7 +226,7 @@ presence.on("UpdateData", async () => {
 		presenceData.state = "privacy";
 		presence.setActivity(presenceData);
 	} else {
-		presenceData.smallImageKey = "search";
+		presenceData.smallImageKey = Assets.Search;
 		presenceData.smallImageText = "Navigando...";
 		presenceData.details = "Navigando...";
 		presence.setActivity(presenceData);

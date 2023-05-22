@@ -11,7 +11,7 @@ function findElement(tagName: string, className: string): Element {
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "key",
+			largeImageKey: "https://i.imgur.com/VdcSlNL.png",
 			details: "Browsing...",
 			startTimestamp: browsingTimestamp,
 		},
@@ -46,7 +46,7 @@ presence.on("UpdateData", async () => {
 		presenceData.details = findElement("span", "Tr-title")?.textContent;
 		presenceData.state = "Trailer";
 
-		presenceData.smallImageKey = video.paused ? "pause" : "play";
+		presenceData.smallImageKey = video.paused ? Assets.Pause : Assets.Play;
 		presenceData.smallImageText = video.paused ? "Paused" : "Playing";
 
 		[, presenceData.endTimestamp] = presence.getTimestampsfromMedia(video);
@@ -72,7 +72,7 @@ presence.on("UpdateData", async () => {
 
 		presenceData.details = findElement("span", "Tr-title")?.textContent;
 
-		presenceData.smallImageKey = video.paused ? "pause" : "play";
+		presenceData.smallImageKey = video.paused ? Assets.Pause : Assets.Play;
 		presenceData.smallImageText = video.paused ? "Paused" : "Playing";
 
 		[, presenceData.endTimestamp] = presence.getTimestampsfromMedia(video);

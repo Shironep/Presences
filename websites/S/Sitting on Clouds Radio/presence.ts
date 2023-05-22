@@ -6,10 +6,10 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "clouds",
+			largeImageKey: "https://i.imgur.com/pAEVAX8.png",
 		},
 		presenceDataSlide: PresenceData = {
-			largeImageKey: "clouds",
+			largeImageKey: "https://i.imgur.com/pAEVAX8.png",
 		};
 
 	if (document.querySelector(".player_playing__N2IaC")) {
@@ -25,7 +25,7 @@ presence.on("UpdateData", async () => {
 		slideshow.addSlide("slideAlbum", presenceDataSlide, 5000);
 	} else {
 		presenceData.details = "Not tuned in.";
-		presenceData.smallImageKey = "pause";
+		presenceData.smallImageKey = Assets.Pause;
 	}
 	if (slideshow.getSlides().length > 0) presence.setActivity(slideshow);
 	else presence.setActivity(presenceData);

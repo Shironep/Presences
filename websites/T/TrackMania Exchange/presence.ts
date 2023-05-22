@@ -2,11 +2,12 @@ const presence = new Presence({
 		clientId: "721986767322087464",
 	}),
 	browsingTimestamp = Math.floor(Date.now() / 1000);
+
 let currentURL = new URL(document.location.href),
 	currentPath = currentURL.pathname.replace(/^\/|\/$/g, "").split("/"),
 	presenceData: PresenceData = {
 		details: "Viewing an unsupported page",
-		largeImageKey: "lg",
+		largeImageKey: "https://i.imgur.com/9OFSS6T.png",
 		startTimestamp: browsingTimestamp,
 	};
 const updateCallback = {
@@ -27,7 +28,7 @@ const updateCallback = {
 	resetData = (
 		defaultData: PresenceData = {
 			details: "Viewing an unsupported page",
-			largeImageKey: "lg",
+			largeImageKey: "https://i.imgur.com/9OFSS6T.png",
 			startTimestamp: browsingTimestamp,
 		}
 	): void => {

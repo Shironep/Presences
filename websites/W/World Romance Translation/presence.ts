@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "wrt_icon",
+			largeImageKey: "https://i.imgur.com/WJFdTQL.png",
 			startTimestamp: browsingTimestamp,
 		},
 		{ pathname, href } = document.location;
@@ -28,7 +28,7 @@ presence.on("UpdateData", async () => {
 			document.querySelector("div.wrapper > div > div > div.releases > h1")
 				.textContent
 		}`;
-		presenceData.smallImageKey = "search";
+		presenceData.smallImageKey = Assets.Search;
 	} else if (document.querySelector("div#readerarea")) {
 		const mangaName =
 				document.querySelector<HTMLHeadingElement>("h1.entry-title"),

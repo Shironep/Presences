@@ -7,7 +7,7 @@ let productName, productBrand, blogTitle, blogAuthor;
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "logo",
+		largeImageKey: "https://i.imgur.com/IZlOaJU.png",
 		startTimestamp: browsingTimestamp,
 	};
 
@@ -95,7 +95,7 @@ presence.on("UpdateData", async () => {
 			).textContent
 		} Results`;
 
-		presenceData.smallImageKey = "search";
+		presenceData.smallImageKey = Assets.Search;
 	} else {
 		switch (window.location.pathname) {
 			case "/cart": {
@@ -126,7 +126,7 @@ presence.on("UpdateData", async () => {
 					presenceData.details = blogTitle;
 					if (blogAuthor) presenceData.state = blogAuthor;
 
-					if (blogAuthor) presenceData.smallImageKey = "reading";
+					if (blogAuthor) presenceData.smallImageKey = Assets.Reading;
 				} else presence.setActivity();
 		}
 	}

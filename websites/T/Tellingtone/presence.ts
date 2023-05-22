@@ -21,7 +21,7 @@ let strings: Awaited<ReturnType<typeof getStrings>>,
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/L4eWRh1.png",
 			startTimestamp: browsingTimestamp,
 		},
 		{ pathname, href } = document.location,
@@ -80,10 +80,10 @@ presence.on("UpdateData", async () => {
 		delete presenceData.buttons;
 
 		if (document.querySelector(".icon-pause")) {
-			presenceData.smallImageKey = "play";
+			presenceData.smallImageKey = Assets.Play;
 			presenceData.smallImageText = strings.playing;
 		} else {
-			presenceData.smallImageKey = "pause";
+			presenceData.smallImageKey = Assets.Pause;
 			presenceData.smallImageText = strings.paused;
 			delete presenceData.endTimestamp;
 			delete presenceData.startTimestamp;
@@ -94,7 +94,8 @@ presence.on("UpdateData", async () => {
 		delete presenceData.startTimestamp;
 		delete presenceData.endTimestamp;
 	}
-	if (!showCover) presenceData.largeImageKey = "logo";
+	if (!showCover)
+		presenceData.largeImageKey = "https://i.imgur.com/L4eWRh1.png";
 
 	if (presenceData.details) presence.setActivity(presenceData);
 	else presence.setActivity();

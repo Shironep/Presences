@@ -22,7 +22,7 @@ presence.on("UpdateData", async () => {
 	// Define presence data
 	const presenceData: PresenceData = {
 		details: "Browsing...",
-		largeImageKey: "pandora",
+		largeImageKey: "https://i.imgur.com/Tt7iIYq.png",
 	};
 
 	// Define whether or not we're currently playing
@@ -58,7 +58,7 @@ presence.on("UpdateData", async () => {
 			// If we're not paused, set the small image to playing and fetch the timestamps
 			// Otherwise, set the small image to paused
 			if (isPlaying) {
-				presenceData.smallImageKey = "play";
+				presenceData.smallImageKey = Assets.Play;
 				presenceData.smallImageText = (await strings).play;
 
 				// Get duration control
@@ -83,7 +83,7 @@ presence.on("UpdateData", async () => {
 						);
 				} else presence.error("Timestamps are null!");
 			} else {
-				presenceData.smallImageKey = "pause";
+				presenceData.smallImageKey = Assets.Pause;
 				presenceData.smallImageText = (await strings).pause;
 			}
 

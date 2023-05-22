@@ -17,7 +17,7 @@ let user: string,
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "sdarot",
+		largeImageKey: "https://i.imgur.com/iHYxLW2.png",
 	};
 
 	if (
@@ -49,7 +49,7 @@ presence.on("UpdateData", async () => {
 		}
 
 		if (!isNaN(duration)) {
-			presenceData.smallImageKey = paused ? "pause" : "play";
+			presenceData.smallImageKey = paused ? Assets.Pause : Assets.Play;
 			presenceData.smallImageText = paused
 				? (await strings).pause
 				: (await strings).play;

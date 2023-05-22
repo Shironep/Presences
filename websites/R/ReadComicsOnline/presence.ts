@@ -25,7 +25,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "rco_logo",
+			largeImageKey: "https://i.imgur.com/rOrdlzw.png",
 			startTimestamp: browsingTimestamp,
 		},
 		{ pathname, href } = location,
@@ -140,7 +140,7 @@ presence.on("UpdateData", async () => {
 							6,
 							title.textContent.indexOf("information")
 						);
-						presenceData.smallImageKey = "reading";
+						presenceData.smallImageKey = Assets.Reading;
 						if (episode) {
 							presenceData.state =
 								episode.selectedOptions[0].textContent.trim();

@@ -2,10 +2,11 @@ const presence = new Presence({
 		clientId: "972246349917610054",
 	}),
 	browsingTimestamp = Math.floor(Date.now() / 1000);
+
 presence.on("UpdateData", () => {
 	const { pathname } = window.location,
 		presenceData: PresenceData = {
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/8MP205p.png",
 			startTimestamp: browsingTimestamp,
 		};
 	if (document.querySelector("input[id^=headlessui]"))

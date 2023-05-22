@@ -4,7 +4,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "google_podcast_logo",
+			largeImageKey: "https://i.imgur.com/OiPOkMA.png",
 		},
 		podcastTitle =
 			document.querySelectorAll(".Ut8Gr").length > 0 &&
@@ -19,9 +19,9 @@ presence.on("UpdateData", async () => {
 		const isPaused =
 			(document.querySelector(".DPvwYc.ERYGad") as HTMLSpanElement).style
 				.display !== "none";
-		presenceData.smallImageKey = isPaused ? "pause" : "play";
+		presenceData.smallImageKey = isPaused ? Assets.Pause : Assets.Play;
 		if (!isPaused) {
-			presenceData.smallImageKey = "play";
+			presenceData.smallImageKey = Assets.Play;
 			const ts = Math.round(Date.now() / 1000),
 				elapsedSeconds = parseLength(
 					document.querySelector(".oG0wpe").children[0].textContent

@@ -10,7 +10,7 @@ let timestamp: [number, number],
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/6bm1P3r.png",
 			startTimestamp: browsingTimestamp,
 		},
 		{ hash, hostname, href } = document.location,
@@ -130,10 +130,10 @@ presence.on("UpdateData", async () => {
 				!document.querySelector("#loading-logo").className.includes("flashing")
 			) {
 				presenceData.endTimestamp = timestamp[1];
-				presenceData.smallImageKey = "play";
+				presenceData.smallImageKey = Assets.Play;
 			} else {
 				delete presenceData.endTimestamp;
-				presenceData.smallImageKey = "pause";
+				presenceData.smallImageKey = Assets.Pause;
 			}
 			title = document
 				.querySelector("head > title")

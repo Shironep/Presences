@@ -8,7 +8,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "comedycentral",
+		largeImageKey: "https://i.imgur.com/NJ6Ezno.png",
 	};
 
 	if (document.location.pathname.startsWith("/episodes")) {
@@ -31,7 +31,7 @@ presence.on("UpdateData", async () => {
 		presenceData.details = document.querySelector(".header h3 a").textContent;
 		presenceData.state =
 			epNumber + document.querySelector(".sub-header h1").textContent;
-		presenceData.smallImageKey = player.paused ? "pause" : "play";
+		presenceData.smallImageKey = player.paused ? Assets.Pause : Assets.Play;
 		presenceData.smallImageText = player.paused
 			? (await strings).pause
 			: (await strings).play;

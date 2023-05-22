@@ -35,7 +35,7 @@ presence.on("iFrameData", (data: IFrameData) => {
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "lr",
+			largeImageKey: "https://i.imgur.com/F7W7Vnn.png",
 		},
 		[sGlobalRepeat, sFormatRepeat, sFormatGlobalRepeat] = await Promise.all([
 			presence.getSetting<boolean>("sGlobalRepeat"),
@@ -102,7 +102,7 @@ presence.on("UpdateData", async () => {
 		presenceData.startTimestamp = browsingTimestamp;
 		presenceData.details = "Loading video...";
 		[presenceData.state] = document.title.split(" - Listen On Repeat");
-		presenceData.smallImageKey = "reading";
+		presenceData.smallImageKey = Assets.Reading;
 	}
 
 	if (presenceData.details) presence.setActivity(presenceData);

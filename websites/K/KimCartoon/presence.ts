@@ -41,14 +41,14 @@ presence.on("iFrameData", (data: IFrameData) => {
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "kim",
+		largeImageKey: "https://i.imgur.com/0oTbCN4.png",
 	};
 
 	if (
 		document.querySelector("#adsIfrme > div > div > div > h1 > strong") !== null
 	) {
 		if (iFrameVideo === true && !isNaN(duration)) {
-			presenceData.smallImageKey = paused ? "pause" : "play";
+			presenceData.smallImageKey = paused ? Assets.Pause : Assets.Play;
 			presenceData.smallImageText = paused
 				? (await strings).pause
 				: (await strings).play;
@@ -76,7 +76,7 @@ presence.on("UpdateData", async () => {
 			);
 
 			presenceData.state = title.textContent;
-			presenceData.smallImageKey = "reading";
+			presenceData.smallImageKey = Assets.Reading;
 		}
 	} else if (document.location.pathname === "/") {
 		presenceData.details = "Viewing main page";

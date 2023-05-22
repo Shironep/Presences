@@ -44,7 +44,7 @@ presence.on("iFrameData", (data: Video) => {
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "nekosama-icon",
+			largeImageKey: "https://i.imgur.com/xC6MpG3.png",
 			details: "Navigue sur Neko-sama",
 		},
 		{ pathname } = document.location,
@@ -93,7 +93,7 @@ presence.on("UpdateData", async () => {
 						episodeImage === "https://neko-sama.fr/images/default_thumbnail.png"
 							? "nekosama-icon"
 							: episodeImage;
-					presenceData.smallImageKey = paused ? "pause" : "play";
+					presenceData.smallImageKey = paused ? Assets.Pause : Assets.Play;
 					presenceData.smallImageText = paused
 						? "En pause"
 						: "Lecture en cours";

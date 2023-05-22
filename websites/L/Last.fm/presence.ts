@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	let presenceData: PresenceData = {
-		largeImageKey: "lastfm",
+		largeImageKey: "https://i.imgur.com/ZmDhLly.png",
 		smallImageKey: "browse",
 		startTimestamp: browsingTimestamp,
 	};
@@ -154,14 +154,14 @@ presence.on("UpdateData", async () => {
 			presenceData.largeImageKey = artwork.includes("player_default_album")
 				? "lastfm"
 				: artwork.replace("/174s/", "/1024s/");
-		} else presenceData.largeImageKey = "lastfm";
+		} else presenceData.largeImageKey = "https://i.imgur.com/ZmDhLly.png";
 
 		presenceData.details = "Listening to:";
 		presenceData.state = document
 			.querySelector("p.player-bar-track.js-player-status")
 			?.getAttribute("title");
 
-		presenceData.smallImageKey = paused ? "pause" : "play";
+		presenceData.smallImageKey = paused ? Assets.Pause : Assets.Play;
 		presenceData.smallImageText = paused ? "Paused" : "Playing";
 
 		delete presenceData.startTimestamp;

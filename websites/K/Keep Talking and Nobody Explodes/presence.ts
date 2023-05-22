@@ -12,7 +12,7 @@ let oldLang: string,
 presence.on("UpdateData", async () => {
 	const path = current.pathname.split("/").slice(1),
 		presenceData: PresenceData = {
-			largeImageKey: "logo_big",
+			largeImageKey: "https://i.imgur.com/rrIWGBq.png",
 		};
 
 	oldLang = newLang;
@@ -38,7 +38,7 @@ presence.on("UpdateData", async () => {
 					.querySelector<HTMLTitleElement>(".title")
 					.textContent.replace(/\n|\t/g, "");
 				presenceData.smallImageText = strings.reading;
-				presenceData.smallImageKey = "reading";
+				presenceData.smallImageKey = Assets.Reading;
 				presenceData.startTimestamp = timestamp;
 
 				if (page === 0) {

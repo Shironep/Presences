@@ -13,7 +13,7 @@ const presence = new Presence({
 		else return "Loading...";
 	},
 	videoStatus = (video: HTMLVideoElement): string => {
-		return video.paused ? "pause" : "play";
+		return video.paused ? Assets.Pause : Assets.Play;
 	};
 
 let oldUrl: string,
@@ -186,7 +186,7 @@ presence.on("UpdateData", async () => {
 			]
 		),
 		presenceData: PresenceData = {
-			largeImageKey: "thesite",
+			largeImageKey: "https://i.imgur.com/XpFN1EZ.png",
 		};
 
 	if (oldUrl !== path) {
@@ -340,11 +340,11 @@ presence.on("UpdateData", async () => {
 
 	if (presenceData.details) {
 		if (presenceData.details.match("(Browsing|Viewing)")) {
-			presenceData.smallImageKey = "reading";
+			presenceData.smallImageKey = Assets.Reading;
 			presenceData.smallImageText = (await strings).browse;
 		}
 		if (presenceData.details.includes("Searching")) {
-			presenceData.smallImageKey = "search";
+			presenceData.smallImageKey = Assets.Search;
 			presenceData.smallImageText = (await strings).search;
 		}
 

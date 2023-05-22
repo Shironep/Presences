@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/vWBdu2A.png",
 			startTimestamp: browsingTimestamp,
 		},
 		{ pathname, search } = document.location;
@@ -31,7 +31,7 @@ presence.on("UpdateData", async () => {
 			.querySelector("#pageSelect > option:checked")
 			.textContent.replace("\n", "")
 			.replace("SAYFA", "")}`;
-		presenceData.smallImageKey = "read";
+		presenceData.smallImageKey = Assets.Reading;
 		presenceData.buttons = [
 			{ label: "Sayfaya Git", url: window.location.href },
 		];
@@ -45,7 +45,7 @@ presence.on("UpdateData", async () => {
 	} else if (pathname === "/mangalar" && search?.substr(0, 7) === "?search") {
 		presenceData.details = "Arıyor:";
 		presenceData.state = new URLSearchParams(search).get("search");
-		presenceData.smallImageKey = "search";
+		presenceData.smallImageKey = Assets.Search;
 	} else if (pathname === "/mangalar")
 		presenceData.details = "Mangaya Göz Atıyor";
 	else if (pathname.startsWith("/kategori")) {

@@ -6,7 +6,7 @@ presence.on("UpdateData", async () => {
 			".content__viewer--floating"
 		),
 		presenceData: PresenceData = {
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/GEL8nqd.png",
 		};
 	if (document.location.pathname === "/" && !floatingViewer)
 		presenceData.details = "Browsing homepage";
@@ -66,7 +66,7 @@ presence.on("UpdateData", async () => {
 					document.querySelector(
 						"div.card__main-actions div.media__subtitle  span.channel-name"
 					)?.textContent;
-				presenceData.smallImageKey = "paused";
+				presenceData.smallImageKey = Assets.Pause;
 				presenceData.smallImageText = "Paused";
 
 				if (uploaderUrlElement && buttons) {

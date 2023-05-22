@@ -36,7 +36,7 @@ const gain = new Presence({
 gain.on("UpdateData", async () => {
 	const path = document.location.pathname,
 		presenceData: PresenceData = {
-			largeImageKey: "g-logo",
+			largeImageKey: "https://i.imgur.com/S1ftiFE.jpg",
 			startTimestamp: Math.floor(Date.now() / 1000),
 		},
 		settings = await gainSettings();
@@ -74,7 +74,7 @@ gain.on("UpdateData", async () => {
 				Math.floor(video?.duration)
 			);
 
-			presenceData.smallImageKey = video?.paused ? "pause" : "play";
+			presenceData.smallImageKey = video?.paused ? Assets.Pause : Assets.Play;
 			presenceData.smallImageText = video?.paused
 				? (await gainStrings).pause
 				: (await gainStrings).play;

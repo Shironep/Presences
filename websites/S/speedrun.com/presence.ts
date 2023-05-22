@@ -2,11 +2,12 @@ const presence = new Presence({
 		clientId: "639603634451120138",
 	}),
 	browsingTimestamp = Math.floor(Date.now() / 1000);
+
 let title: HTMLElement;
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "run",
+		largeImageKey: "https://i.imgur.com/MExOoiX.png",
 	};
 
 	if (document.location.hostname === "www.speedrun.com") {
@@ -23,7 +24,7 @@ presence.on("UpdateData", async () => {
 			title = document.querySelector(
 				"#centerbar > div > div:nth-child(1) > span"
 			);
-			presenceData.smallImageKey = "reading";
+			presenceData.smallImageKey = Assets.Reading;
 			presenceData.startTimestamp = browsingTimestamp;
 			presenceData.details = "Viewing forum post:";
 			if (title.textContent.length > 128)

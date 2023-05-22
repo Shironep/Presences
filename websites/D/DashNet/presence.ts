@@ -20,7 +20,7 @@ presenceSet();
 
 presence.on("UpdateData", () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "dashnet",
+		largeImageKey: "https://i.imgur.com/xcK0UqX.png",
 		startTimestamp: browsingTimestamp,
 	};
 
@@ -46,7 +46,7 @@ presence.on("UpdateData", () => {
 	} else if (document.location.pathname === "/") {
 		presenceData.details = "Browsing DashNet's";
 		presenceData.state = "video games and other fun things";
-		presenceData.smallImageKey = "reading";
+		presenceData.smallImageKey = Assets.Reading;
 	} else if (document.location.pathname.includes("/legacy/"))
 		presenceData.details = "Playing Legacy";
 	else if (document.location.pathname.includes("/igm/"))

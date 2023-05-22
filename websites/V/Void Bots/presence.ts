@@ -1,5 +1,6 @@
 const presence = new Presence({ clientId: "765261270814949417" }),
 	browsingTimestamp = Math.floor(Date.now() / 1000);
+
 let oldLang: string = null,
 	strings: LangStrings;
 
@@ -45,7 +46,7 @@ presence.on("UpdateData", async () => {
 	}
 
 	const presenceData: PresenceData = {
-		largeImageKey: "img_logo",
+		largeImageKey: "https://i.imgur.com/JZWaUA6.png",
 	};
 
 	if (showTimestamp === true) presenceData.startTimestamp = browsingTimestamp;

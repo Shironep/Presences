@@ -2,11 +2,12 @@ const presence = new Presence({
 		clientId: "629093766170411014",
 	}),
 	browsingTimestamp = Math.floor(Date.now() / 1000);
+
 let user: HTMLElement, search: HTMLInputElement, title: HTMLElement | string;
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "hypixel",
+		largeImageKey: "https://i.imgur.com/NaF7FcT.png",
 		startTimestamp: browsingTimestamp,
 	};
 	switch (document.location.hostname) {
@@ -93,14 +94,14 @@ presence.on("UpdateData", async () => {
 					presenceData.details = "Forums, searching for:";
 					presenceData.state = search.value;
 
-					presenceData.smallImageKey = "search";
+					presenceData.smallImageKey = Assets.Search;
 
 					presence.setActivity(presenceData);
 				} else {
 					presenceData.details = "Forums, about to search";
 					presenceData.state = "something up";
 
-					presenceData.smallImageKey = "search";
+					presenceData.smallImageKey = Assets.Search;
 
 					presence.setActivity(presenceData);
 				}
@@ -201,7 +202,7 @@ presence.on("UpdateData", async () => {
 						presenceData.state = `${title.substring(0, 125)}...`;
 					else presenceData.state = title;
 
-					presenceData.smallImageKey = "reading";
+					presenceData.smallImageKey = Assets.Reading;
 
 					presence.setActivity(presenceData);
 				} else {

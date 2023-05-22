@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "fifa",
+		largeImageKey: "https://i.imgur.com/uXThlTp.png",
 	};
 
 	presenceData.startTimestamp = browsingTimestamp;
@@ -206,7 +206,7 @@ presence.on("UpdateData", async () => {
 			document.querySelector(".ut-pinned-list-container.SearchResults")
 		) {
 			presenceData.details = "Transfers - Searching for new players";
-			presenceData.smallImageKey = "search";
+			presenceData.smallImageKey = Assets.Search;
 		}
 	} else if (
 		document.querySelector(

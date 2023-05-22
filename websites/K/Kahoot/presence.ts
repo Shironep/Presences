@@ -75,7 +75,7 @@ let strings: Awaited<ReturnType<typeof getStrings>>,
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "kahoot",
+			largeImageKey: "https://i.imgur.com/yrWMYRs.png",
 			startTimestamp: browsingTimestamp,
 		},
 		[buttons, newLang] = await Promise.all([
@@ -219,6 +219,7 @@ presence.on("UpdateData", async () => {
 					// Set start timestamp after game has been created
 					if (timestampUpdateState === 0) {
 						browsingTimestamp = Math.floor(Date.now() / 1000);
+
 						presenceData.startTimestamp = browsingTimestamp;
 						timestampUpdateState = 1;
 					}

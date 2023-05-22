@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", () => {
 	const presenceData: PresenceData = {
-		largeImageKey: "meetlogo",
+		largeImageKey: "https://i.imgur.com/LyrRnRS.png",
 		startTimestamp: time,
 	};
 
@@ -13,7 +13,7 @@ presence.on("UpdateData", () => {
 		presenceData.details = "Initial page";
 		presenceData.state = "Just waiting";
 	} else {
-		presenceData.smallImageKey = "vcall";
+		presenceData.smallImageKey = Assets.VideoCall;
 		presenceData.details = "In a meeting";
 		presenceData.state = `${
 			(document.querySelector(".wnPUne") ?? document.querySelector(".uGOf1d"))

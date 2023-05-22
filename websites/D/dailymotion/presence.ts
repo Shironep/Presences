@@ -6,7 +6,7 @@ const presence = new Presence({
 		pause: "general.paused",
 	}),
 	presenceData: PresenceData = {
-		largeImageKey: "logo",
+		largeImageKey: "https://i.imgur.com/3qXaosP.png",
 	};
 
 presence.on("UpdateData", async () => {
@@ -20,8 +20,8 @@ presence.on("UpdateData", async () => {
 		presenceData.state = uploader
 			? (uploader as HTMLElement).textContent
 			: "Uploader not found...";
-		presenceData.largeImageKey = "logo";
-		presenceData.smallImageKey = video.paused ? "pause" : "play";
+		presenceData.largeImageKey = "https://i.imgur.com/3qXaosP.png";
+		presenceData.smallImageKey = video.paused ? Assets.Pause : Assets.Play;
 		presenceData.smallImageText = video.paused
 			? (await strings).pause
 			: (await strings).play;
@@ -40,7 +40,7 @@ presence.on("UpdateData", async () => {
 	} else {
 		presence.setActivity({
 			details: "Browsing..",
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/3qXaosP.png",
 		});
 	}
 });

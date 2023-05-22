@@ -1,10 +1,11 @@
 const presence = new Presence({
 	clientId: "751285675277680811",
 });
+
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
 			startTimestamp: Math.floor(Date.now() / 1000),
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/yDmQsYg.png",
 		},
 		path = document.location.pathname,
 		title: HTMLElement = document.querySelector("head title"),

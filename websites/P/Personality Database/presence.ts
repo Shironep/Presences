@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "personality-database",
+			largeImageKey: "https://i.imgur.com/hcw43Xf.png",
 			startTimestamp: browsingTimestamp,
 		},
 		useOnlyFirstPersonalityType = await presence.getSetting<boolean>(
@@ -56,7 +56,7 @@ presence.on("UpdateData", async () => {
 	} else if (document.location.pathname === "/search") {
 		const urlParams = new URLSearchParams(window.location.search);
 
-		presenceData.smallImageKey = "search";
+		presenceData.smallImageKey = Assets.Search;
 		presenceData.details = "Searching:";
 		presenceData.state = urlParams.get("keyword") || urlParams.get("q");
 	} else if (document.location.pathname === "/vote") {

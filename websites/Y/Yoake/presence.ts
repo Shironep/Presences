@@ -17,7 +17,7 @@ presence.on("UpdateData", async () => {
 				document.querySelectorAll("video")[0].className !== "previewVideo"),
 		curPath = document.location.pathname,
 		presenceData: PresenceData = {
-			largeImageKey: "logo",
+			largeImageKey: "https://i.imgur.com/eL8ARU0.png",
 		};
 
 	if (lastPath !== curPath || lastPlaybackState !== playback) {
@@ -74,7 +74,7 @@ presence.on("UpdateData", async () => {
 				Math.floor(video.currentTime),
 				Math.floor(video.duration)
 			);
-		presenceData.smallImageKey = video.paused ? "pause" : "play";
+		presenceData.smallImageKey = video.paused ? Assets.Pause : Assets.Play;
 		presenceData.smallImageText = video.paused
 			? (await strings).pause
 			: (await strings).play;

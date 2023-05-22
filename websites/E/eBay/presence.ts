@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "ebaylogo",
+			largeImageKey: "https://i.imgur.com/FuSdtYk.png",
 			startTimestamp: browsingTimestamp,
 		},
 		[, page] = location.pathname.split("/");
@@ -50,7 +50,7 @@ presence.on("UpdateData", async () => {
 							document.querySelector(".srp-controls__count-heading .BOLD")
 								?.textContent
 						} Results`;
-						presenceData.smallImageKey = "search";
+						presenceData.smallImageKey = Assets.Search;
 					} else if (location.pathname.includes("/m.html")) {
 						const seller = document.querySelector(".mbid") as HTMLAnchorElement;
 

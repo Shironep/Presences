@@ -8,7 +8,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "applemusic-logo",
+			largeImageKey: "https://i.imgur.com/06HbqaF.png",
 		},
 		[timestamps, cover] = await Promise.all([
 			presence.getSetting<boolean>("timestamps"),
@@ -37,7 +37,7 @@ presence.on("UpdateData", async () => {
 		presenceData.details = navigator.mediaSession.metadata.title;
 		presenceData.state = navigator.mediaSession.metadata.artist;
 
-		presenceData.smallImageKey = paused ? "pause" : "play";
+		presenceData.smallImageKey = paused ? Assets.Pause : Assets.Play;
 		presenceData.smallImageText = paused
 			? (await strings).pause
 			: (await strings).play;

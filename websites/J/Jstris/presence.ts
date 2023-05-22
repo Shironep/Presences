@@ -5,7 +5,7 @@ const presence = new Presence({
 
 presence.on("UpdateData", async () => {
 	const presenceData: PresenceData = {
-			largeImageKey: "bigdefault",
+			largeImageKey: "https://i.imgur.com/YWrUCdh.png",
 		},
 		pathname = document.location.pathname.split("/").splice(1),
 		queryString = document.location.search.substring(1);
@@ -38,7 +38,7 @@ presence.on("UpdateData", async () => {
 	switch (pathname[0]) {
 		//Play Modes
 		case "":
-			presenceData.smallImageKey = "play";
+			presenceData.smallImageKey = Assets.Play;
 			presenceData.smallImageText = "Ingame...";
 			if (queryString) {
 				const queryObj = parseQuery(queryString);

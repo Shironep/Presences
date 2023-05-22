@@ -6,7 +6,7 @@ const presence = new Presence({
 presence.on("UpdateData", async () => {
 	const privacy = await presence.getSetting<boolean>("privacy"),
 		presenceData: PresenceData = {
-			largeImageKey: "malody",
+			largeImageKey: "https://i.imgur.com/5phtiVk.png",
 			startTimestamp: browsingTimestamp,
 		};
 	if (privacy) presenceData.details = "Browsing Malody Website";
@@ -220,7 +220,7 @@ presence.on("UpdateData", async () => {
 			document.querySelector("#content > div.g_title").textContent
 		}profile`;
 	} else if (document.location.pathname.includes("/page/search")) {
-		presenceData.smallImageKey = "search";
+		presenceData.smallImageKey = Assets.Search;
 		presenceData.details = document.querySelector(
 			"#content > div.g_title"
 		).textContent;
