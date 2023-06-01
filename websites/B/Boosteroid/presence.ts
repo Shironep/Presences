@@ -1,76 +1,104 @@
-const presence = new Presence({
-		clientId: "1066889761928777848",
-	}),
-	browsingTimestamp = Math.floor(Date.now() / 1000);
+const presence = new Presence({ clientId: "1066889761928777848" }),
+	browsingTimestamp = Math.floor(Date.now() / 1000),
+	assets = {
+		logo: "https://i.imgur.com/Ldqj50W.png",
+		unknownGame: "https://i.imgur.com/cnczdmM.png",
+	},
+	getGame = async (id: number) => {
+		const get = await fetch(
+				"https://raw.githubusercontent.com/Shironep/Boosteroid/main/games.json"
+			),
+			body = await get.json();
+		return body[id];
+	},
+	{ pathname, hostname } = document.location;
 
 presence.on("UpdateData", async () => {
-	interface Game {
-		name: string;
-		platform: string;
-		icon: string;
-	}
+	let presenceData: PresenceData = {
+		largeImageKey: assets.logo,
+		startTimestamp: browsingTimestamp,
+	};
 
-	enum assets {
-		logo = "https://i.imgur.com/Ldqj50W.png",
-		unknownGame = "https://i.imgur.com/cnczdmM.png",
-	}
-
-	async function getGame(id: number): Promise<Game | null> {
-		const response = await fetch("https://github.saith.dev/games.json");
-		if (!response.ok) return null;
-
-		const games = await response.json();
-
-		if (!games[id]) return null;
-		return games[id];
-	}
-
-	const presenceData: PresenceData = {
-			largeImageKey: assets.logo,
-			startTimestamp: browsingTimestamp,
-		},
-		{ pathname } = document.location;
-
-	switch (true) {
-		case pathname === "/dashboard": {
-			presenceData.details = "Browsing";
-			presenceData.state = `In: ${
-				(document.querySelector("button.tab-button--active") as HTMLElement)
-					.innerHTML
-			}`;
-			presenceData.largeImageKey = assets.logo;
-			break;
-		}
-		case pathname.startsWith("/application/"): {
-			presenceData.details = "Looking at Game information";
-			presenceData.state = (
-				document.querySelector("h1") as HTMLElement
-			).innerHTML;
-			presenceData.largeImageKey = assets.logo;
-			break;
-		}
-		case pathname === "/profile/account/main": {
-			presenceData.details = "Browsing";
-			presenceData.largeImageKey = assets.logo;
-			break;
-		}
-		case pathname === "/static/streaming/streaming.html": {
-			const gameid = await getGame(
-				Number(window.localStorage.getItem("appId"))
-			);
-			if (!gameid) {
-				presenceData.details = "Unknown Game";
-				presenceData.largeImageKey = assets.unknownGame;
-			} else {
-				const gameid = await getGame(
+	const PagesCloud: Record<
+			string,
+			PresenceData | (() => Promise<PresenceData>)
+		> = {
+			"/dashboard": {
+				details: "Browsing dashboard",
+				state: `In: ${(
+					document.querySelector(
+						"button.tab-button--active"
+					) as HTMLButtonElement
+				)?.textContent.trim()}`,
+			},
+			"/fanatical": {
+				details: "Browsing Dashboard",
+				state: "Viewing Fanatical",
+			},
+			"/profile/account/main": {
+				details: "In My Account",
+				state: "Viewing my profile",
+			},
+			"/profile/devices": {
+				details: "In My Account",
+				state: "Viewing active devices",
+			},
+			"/profile/special": {
+				details: "In My Account",
+				state: "Viewing special offers",
+			},
+			"/network-test": {
+				details: "SpeedTest",
+				state: "Testing connection speed",
+			},
+			"/static/streaming/streaming.html": async (): Promise<PresenceData> => {
+				const game = await getGame(
 					Number(window.localStorage.getItem("appId"))
 				);
-				presenceData.details = gameid.name;
-				presenceData.state = `Platform: ${gameid.platform}`;
-				presenceData.largeImageKey = gameid.icon;
-			}
+				presenceData.details = `Playing: ${game?.name ?? "unknown game"}`;
+				presenceData.state = `Platform: ${
+					game?.platform ?? "Unknown Platform"
+				}`;
+				presenceData.largeImageKey = game?.icon ?? assets.unknownGame;
+				return presenceData;
+			},
+			"/application/": async (): Promise<PresenceData> => {
+				const game = await getGame(
+					Number(pathname.replace("/application/", ""))
+				);
+				presenceData.details = "Seeing game information";
+				presenceData.state = game?.name ?? "Unknown game";
+				presenceData.largeImageKey = game?.icon ?? assets.unknownGame;
+				return presenceData;
+			},
+		},
+		check = (url: string): boolean => url === hostname,
+		PagesDefault: Record<string, PresenceData> = {
+			"/": { details: "Viewing Main Page" },
+			"/download": { details: "Viewing download page" },
+			"/faq/": { details: "Viewing Faq page" },
+			"/blog/": { details: "Viewing Blog page" },
+		};
+
+	switch (true) {
+		case check("boosteroid.com"): {
+			update(PagesDefault);
 			break;
 		}
+		case check("cloud.boosteroid.com"): {
+			update(PagesCloud);
+		}
 	}
-	presence.setActivity(presenceData);
+
+	async function update(
+		record: Record<string, PresenceData | (() => Promise<PresenceData>)>
+	) {
+		for (const [path, data] of Object.entries(record)) {
+			if (pathname.startsWith(path))
+				presenceData = { ...presenceData, ...data };
+		}
+
+		if (presenceData.details) presence.setActivity(presenceData);
+		else presence.setActivity();
+	}
 });
